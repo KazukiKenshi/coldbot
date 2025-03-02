@@ -46,6 +46,10 @@ The integer specifies the index of the customer being talked to.
 - Google Speech-to-Text and Google Text-to-Speech were used for audio processing.
 - Google Calendar API manages ERP demo scheduling.
 
+## Loom Video link
+[Intro](https://www.loom.com/share/bb590f88f78040bb83d6ce182cc829af?sid=e1e4693d-0f48-43cf-8548-69a073ada110)
+[Demo](https://www.loom.com/share/6ae86f39f80b48a68dd03591bbf71efc?sid=c4431adf-191c-4d0e-985a-657cff8b2c2a)
+
 ## Features Implementation Status
 ### Implemented:
 - Conversation handling for all scenarios
