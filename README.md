@@ -1,13 +1,12 @@
 # Project Setup
 
 ## Installation
-The project is made using python 3.10 but it should work for python>3.9
 
 ### Using Conda (Recommended)
 If you have Conda installed, create the environment using:
 ```sh
-conda env create -f environment.yml # Set the environment name and prefix in environment.yml
-conda activate my_env  # Replace 'my_env' with the environment name.
+conda env create -f environment.yml
+conda activate my_env  # Replace 'my_env' with the environment name
 ```
 
 ### Using Pip
@@ -15,27 +14,6 @@ If Conda is not available, install dependencies using:
 ```sh
 pip install -r requirements.txt
 ```
-
-## API Key and Service Account Setup
-You need to obtain API keys and set up authentication:
-
-1. **Mistral API Key**: Get an API key from Mistral.
-2. **Google Calendar API**:
-   - Create a service account in Google Cloud.
-   - Enable Google Calendar API.
-   - Download the `service_account.json` file.
-   - Place it in the project directory.
-3. **Gmail Account**: Provide a Gmail account for calendar integration.
-
-## Environment Variables (.env File)
-Create a `.env` file in the project directory with the following content:
-```
-OPENAI_API_KEY=YOUR_MISTRAL_API_KEY
-SCOPES=https://www.googleapis.com/auth/calendar
-SERVICE_ACCOUNT_FILE=service_account.json
-EMAIL_ID=YOUR_GMAIL_ID
-```
-Replace `YOUR_MISTRAL_API_KEY` and `YOUR_GMAIL_ID` with actual values.
 
 ## Running the Project
 To run the project, use the following command:

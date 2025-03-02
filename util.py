@@ -2,7 +2,10 @@ from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from google.oauth2 import service_account
 import json
+import os
 import argparse
+
+# utility function for command line arguments
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description="Detect flags -d for ERP demo, -i for interview, -p for payment followup, -o request for placing order, followed by customer index.")
@@ -22,6 +25,9 @@ def parse_arguments():
     return args
 
 
+# Functions for integrating google calendar and scheduling events
+
+
 def get_service_account_credentials(service_account_file,scopes):
     creds = service_account.Credentials.from_service_account_file(
         service_account_file, scopes=scopes
@@ -34,8 +40,8 @@ def get_service(service_account_file,scopes):
     )
     return build("calendar", "v3", credentials=creds)
 
-def schedule_demo(summary, start_time, end_time, email):
-    service = get_service()
+def schedule_demo(summary, start_time, end_time, email,service_account_file,scopes):
+    service = get_service(service_account_file,scopes)
     
     company_calendar_id = email
 
@@ -48,6 +54,7 @@ def schedule_demo(summary, start_time, end_time, email):
     event = service.events().insert(calendarId=company_calendar_id, body=event).execute()
     print(f"Event scheduled: {event.get('htmlLink')}")
 
+# The DFA to handle state management
 
 def get_next_state(state, intent):
     if state == "DEMO_INTRO" and intent == "ASK_INFO":
@@ -66,6 +73,9 @@ def get_next_state(state, intent):
         return "SCHEDULE_DEMO"
     elif state == "SCHEDULE_DEMO" and intent == "END_CONVERSATION":
         return "END_DEMO"
+    
+    # Interview screening
+
     elif state == "INTRODUCTION" and intent == "DISCUSS_SKILLS":
         return "DISCUSS_SKILLS"
     elif state == "INTRODUCTION" and intent == "DISCUSS_SKILLS":
@@ -77,6 +87,7 @@ def get_next_state(state, intent):
     elif state == "DISCUSS_EXPERIENCE" and intent == "END_CONVERSATION":
         return "END_INTERVIEW"
     
+    #Payment/Order followup
 
     elif state == "REMIND_PAYMENT" and intent == "REQUEST_EXTENSION":
         return "REQUEST_EXTENSION"
@@ -92,6 +103,7 @@ def get_next_state(state, intent):
     else:
         return state
 
+# Functions to read files from data folder to extract info about user whom the chatbot is calling
 
 def get_customer_product_info(json_filename, index):
     # Load JSON data from file
@@ -116,7 +128,6 @@ def get_customer_product_info(json_filename, index):
         for p in interested_products if p in products
     )
 
-    # Format the output
     output = f"Customer Name = {customer_name}\nProducts:\n{product_details}"
     
     return output

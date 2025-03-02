@@ -1,7 +1,7 @@
 import os
 from langchain_core.prompts import ChatPromptTemplate
 from datetime import datetime,timedelta
-from util import get_customer_product_info,get_payment_due_info,load_name_from_file,parse_arguments
+from util import get_customer_product_info,get_payment_due_info,load_name_from_file
 
 current_datetime = datetime.now().strftime("%d-%m-%y %H:%M")
 current_day = datetime.now().strftime("%A")
@@ -18,16 +18,21 @@ def read_file(filename):
         print(f"Error: {e}")
         return None
 
+# Loading the information about erp system
+
 def get_erp_data():
     return read_file("./data/ERP.txt")
 
 
 index = int(os.getenv("INDEX", 0))
 
-
+# data about users retrieved from data files
 payment_data = get_payment_due_info("./data/payment_clients.json",index)
 interviewee_name = load_name_from_file("./data/demo_clients.txt",index)
 order_data = get_customer_product_info("./data/order_clients.json",index)
+
+
+# prompt templates for ERP demo
 
 demo_start_line = f"""
 
@@ -42,7 +47,7 @@ Aapke convenience ke hisaab se time set kar sakte hain.
 """
 
 
-demo_template = """"
+demo_template =  f"Current date and time : {current_datetime} ({current_day}) \n" + """
     You are a female AI agent handling ERP demo scheduling in Hinglish. 
     User wants to book a demo. Ask for their availability and confirm booking. 
     Use polite and friendly Hinglish. Classify the user's intent into one of the following:
@@ -64,8 +69,8 @@ response_demo_1 = """"
     }}
 """
 
-response_demo_2 = f""""
-    Current date and time : {current_datetime} ({current_day})
+response_demo_2 =""""
+    
     Confirm the date and time with the client and inform him.
     Your Response (JSON Format): 
     {{
@@ -90,7 +95,7 @@ response_demo_3 = """"
 
 
 
-
+# prompt templates for interview screening
 
 
 
@@ -155,7 +160,7 @@ response_interview_3 = """"
 
 
 
-
+# prompt templates for payment/order followup
 
 
 
@@ -235,7 +240,7 @@ response_payment_followup_3 = """"
 
 
 
-
+# Setting up the final prompts for each state
 
 
 demo_intro =  demo_template + demo_start_line + response_demo_1
@@ -257,7 +262,7 @@ request_extension = payment_followup_template + response_payment_followup_2
 end_payment = payment_followup_template + response_payment_followup_2
 
 
-
+# function to load prompt based on input state
 
 def get_prompt(state):
     if state == "DEMO_INTRO":
@@ -294,4 +299,4 @@ def get_prompt(state):
         return end_payment
         
     else:
-        return ask_info
+        return None

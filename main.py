@@ -40,6 +40,8 @@ args = parse_arguments()
 index = None
 current_state = None
 
+# parsing the command line argument and setting the initial state for conversation
+
 if args.d is not None:
     current_state = "DEMO_INTRO"
     index = args.d
@@ -61,7 +63,8 @@ os.environ["INDEX"] = str(index) if index is not None else ""
 # Function to load history to maintain context of conversation
 
 def get_session_history(session_id):
-    """ Retrieve chat history for a given session. """
+    #Retrieve chat history for a given session.
+
     if session_id not in session_histories:
         session_histories[session_id] = ChatMessageHistory()  
     return session_histories[session_id]
@@ -74,11 +77,6 @@ llm = ChatOpenAI(model="mistral-large-2411", openai_api_base="https://api.mistra
 
 
 recognizer = sr.Recognizer() #Instance of STT
-
-
-
-print(f"current_datetime type: {type(current_datetime)} value: {current_datetime}")
-print(f"current_day type: {type(current_day)} value: {current_day}")
 
 
 
@@ -230,7 +228,9 @@ with sr.Microphone() as source:
                     "ERP demo schedule",
                     start_time,
                     end_time,
-                    EMAIL
+                    EMAIL,
+                    SERVICE_ACCOUNT_FILE,
+                    SCOPES
                 )
 
             
