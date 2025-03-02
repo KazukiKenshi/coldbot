@@ -1,6 +1,7 @@
 # Project Setup
 
 ## Installation
+The project is made using python 3.10 but it should work for python>3.9
 
 ### Using Conda (Recommended)
 If you have Conda installed, create the environment using:
