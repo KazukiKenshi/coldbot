@@ -61,4 +61,4 @@ The integer specifies the index of the customer being talked to.
 ### Scope for future improvement:
 - Storing skills and experience gathered during interviews in a file and scoring the interviewee
 - Improved Hinglish Text-to-Speech quality maybe using ai4bharat/Indic Parler-TTS [Link](https://huggingface.co/ai4bharat/indic-parler-tts#indic-parler-tts)
-
+- Developing a custom intent classifier to reduce reliance on the LLM and improve conversation state management. Previously, I attempted to fine-tune IndicBERT using a synthetic dataset generated with GPT-4, but the accuracy was low due to limited data and lack of conversational diversity.
