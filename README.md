@@ -1,55 +1,52 @@
 # Project Setup
 
-## Prerequisites
-Ensure you have Python installed on your system. Additionally, you can use either Conda or Pip to install dependencies.
-
 ## Installation
 
-### Using Conda (Recommended)
-If you have Conda installed, create and activate the environment using the `environment.yml` file:
-
+### Using Conda
+If you have Conda installed, create the environment using the following command:
 ```sh
 conda env create -f environment.yml
-conda activate your_env_name
+```
+Then activate the environment:
+```sh
+conda activate <env_name>
 ```
 
-Replace `your_env_name` with the actual environment name defined in `environment.yml`.
-
 ### Using Pip
-If you do not have Conda, install the dependencies using Pip:
-
+If you do not have Conda, install dependencies using:
 ```sh
 pip install -r requirements.txt
 ```
 
 ## Running the Code
-To execute the script, use the following command:
-
+To run the project, execute:
 ```sh
 python main.py -d 0
 ```
 
-### Flags and Their Usage
-The script supports four flags to specify the context:
+### Flags
+The script accepts the following flags:
+- `-d` for ERP demo
+- `-i` for interview
+- `-p` for payment follow-up
+- `-o` for request for order placement
 
-- `-d` → ERP Demo
-- `-i` → Interview
-- `-p` → Payment Follow-up
-- `-o` → Request for Order Placement
+The integer following the flag specifies the index of the customer being talked to.
 
-Each flag should be followed by an integer that represents the index of the customer being addressed.
+## Details About Models and Datasets Used
+- **Language Model**: Mistral API via LangChain, used for handling conversations with prompt engineering.
+- **Speech-to-Text (STT)**: Google Speech-to-Text API for transcribing user speech.
+- **Text-to-Speech (TTS)**: Google Text-to-Speech API for converting responses into speech.
+- **Calendar Integration**: Google Calendar API for scheduling ERP demos.
+- **Data Handling**: Customer data is stored in structured JSON format to maintain consistency in responses.
 
-### Example Usage:
-```sh
-python main.py -i 2  # Start an interview with customer at index 2
-python main.py -p 1  # Follow up on payment for customer at index 1
-```
+## Agent Architecture and Key Components
+- **State Management**: A Deterministic Finite Automaton (DFA) is used to manage different conversation scenarios, ensuring structured dialogue flow.
+- **Prompt Engineering**: Custom prompts are designed for each state, enforcing structured responses.
+- **Intent Recognition**: Handled by the LLM to determine the appropriate next state in the conversation.
+- **Data Handling**: Scheduling and client data are passed using structured JSON to maintain clarity and prevent inconsistencies.
 
-Ensure that the required dependencies are installed before running the script.
-
-## Notes
-- Make sure your data files and configurations are correctly set up.
-- If using environment variables, configure them properly before execution.
-
-For any issues, check the project documentation or reach out for support.
+## Challenges and Solutions
+1. **Ensuring Natural Conversation Flow**: This was addressed using a state-based approach where each scenario has a specific conversation flow.
+2. **Handling Large Data Inputs**: Client and scheduling data were formatted into structured JSON and embedded within the prompts to ensure clarity and maintain consistency.
 
