@@ -5,8 +5,8 @@
 ### Using Conda (Recommended)
 If you have Conda installed, create the environment using:
 ```sh
-conda env create -f environment.yml
-conda activate my_env  # Replace 'my_env' with the environment name
+conda env create -f environment.yml # Set the environment name and prefix in environment.yml
+conda activate my_env  # Replace 'my_env' with the environment name.
 ```
 
 ### Using Pip
