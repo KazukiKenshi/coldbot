@@ -15,6 +15,27 @@ If Conda is not available, install dependencies using:
 pip install -r requirements.txt
 ```
 
+## API Key and Service Account Setup
+You need to obtain API keys and set up authentication:
+
+1. **Mistral API Key**: Get an API key from Mistral.
+2. **Google Calendar API**:
+   - Create a service account in Google Cloud.
+   - Enable Google Calendar API.
+   - Download the `service_account.json` file.
+   - Place it in the project directory.
+3. **Gmail Account**: Provide a Gmail account for calendar integration.
+
+## Environment Variables (.env File)
+Create a `.env` file in the project directory with the following content:
+```
+OPENAI_API_KEY=YOUR_MISTRAL_API_KEY
+SCOPES=https://www.googleapis.com/auth/calendar
+SERVICE_ACCOUNT_FILE=service_account.json
+EMAIL_ID=YOUR_GMAIL_ID
+```
+Replace `YOUR_MISTRAL_API_KEY` and `YOUR_GMAIL_ID` with actual values.
+
 ## Running the Project
 To run the project, use the following command:
 ```sh
