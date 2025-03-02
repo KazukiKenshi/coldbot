@@ -56,8 +56,9 @@ The integer specifies the index of the customer being talked to.
 - State management system
 - Calendar event scheduling
 - Intent recognition
+- Loading user info from files (eg. Products user showed interest in, ERP system info etc.)
 
-### Not Implemented:
-- Storing skills and experience gathered during interviews in a file
-- Improved Hinglish Text-to-Speech quality
+### Scope for future improvement:
+- Storing skills and experience gathered during interviews in a file and scoring the interviewee
+- Improved Hinglish Text-to-Speech quality maybe using ai4bharat/Indic Parler-TTS [Link](https://huggingface.co/ai4bharat/indic-parler-tts#indic-parler-tts)
 
