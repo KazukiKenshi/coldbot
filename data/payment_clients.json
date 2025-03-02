@@ -1,0 +1,22 @@
+{
+  "customers": [
+    {
+      "name": "Amit Sharma",
+      "due_amount": 5000,
+      "service": "Web Hosting",
+      "due_date": "2025-03-10"
+    },
+    {
+      "name": "Priya Mehta",
+      "due_amount": 12000,
+      "service": "ERP Subscription",
+      "due_date": "2025-03-15"
+    },
+    {
+      "name": "Rahul Verma",
+      "due_amount": 8000,
+      "service": "Digital Marketing",
+      "due_date": "2025-03-20"
+    }
+  ]
+}

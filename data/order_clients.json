@@ -1,0 +1,43 @@
+{
+    "people": [
+      {
+        "name": "Amit Sharma",
+        "interested_in": ["Laptop", "Smartphone"]
+      },
+      {
+        "name": "Priya Mehta",
+        "interested_in": ["Smartwatch", "Tablet"]
+      }
+    ],
+    "products": [
+      {
+        "name": "Laptop",
+        "category": "Electronics",
+        "price": 75000,
+        "discount" : 10,
+        "description": "A high-performance laptop with 16GB RAM and SSD storage."
+      },
+      {
+        "name": "Smartphone",
+        "category": "Electronics",
+        "price": 50000,
+        "discount" : 20,
+        "description": "A 5G smartphone with a 108MP camera and OLED display."
+      },
+      {
+        "name": "Smartwatch",
+        "category": "Wearables",
+        "price": 15000,
+        "discount" : 15,
+        "description": "A fitness smartwatch with heart rate monitoring and GPS."
+      },
+      {
+        "name": "Tablet",
+        "category": "Electronics",
+        "price": 30000,
+        "discount" : 30,
+        "description": "A 10-inch tablet with a stylus and long battery life."
+      }
+    ]
+  }
+  
